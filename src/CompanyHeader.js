@@ -10,13 +10,13 @@
 * CompanyDetails ==> Company Header
 **/
 
-function CompanyHeader () {
+function CompanyHeader ({ companyData }) {
   return (
     <div className="CompanyHeader">
-      Company Header!
+      <h3>{companyData.name}</h3>
+      <p>{companyData.description}</p>
     </div>
   )
-
 }
 
 export default CompanyHeader;
