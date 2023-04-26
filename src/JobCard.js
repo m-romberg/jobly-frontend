@@ -9,13 +9,16 @@
 * JobCardList ==> {JobCard,...}
 */
 
-function JobCard({ jobData }) {
+function JobCard({ jobData, companyName }) {
   return (
     <div className="JobCard">
     <h4>{jobData.title}</h4>
-    <p>{jobData.companyName}</p>
-    <p>{jobData.salary}</p>
-    <p>{jobData.equity}</p>
+    {jobData.companyName
+          ? <p>{jobData.companyName}</p>
+          : <p>{companyName}</p>
+    }
+    <p>Salary: {jobData.salary}</p>
+    <p>Equity: {jobData.equity}</p>
   </div>
   );
 }
