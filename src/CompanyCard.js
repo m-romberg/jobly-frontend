@@ -2,25 +2,26 @@ import { Navigate } from "react-router-dom";
 import { useState } from "react";
 /**
 * CompanyCard:
-*     simple visual element of Company
+*     visual element for company detail and
+*     "button" that navigates to a company's detail page when clicked
 *
 *  props:
 *     - companyData - {name, logoUrl, description}
 *  state:
-*     - none
+*     - isClicked t/f -if button has been clicked redirect to company page
 *
-* CompanyCardList ==> {CompanyCard,...}
+* CompanyCardList ==> {CompanyCard,...} ==> Navigate
 */
 
 function CompanyCard({ companyData }) {
   console.log("compd=", companyData);
-
   const [isClicked, setIsClicked] = useState(false);
 
   if(isClicked === true) {
     return <Navigate to={`/companies/${companyData.handle}`}/>
   }
 
+  /** changes state of isClicked to true */
   function activateIsClicked() {
     setIsClicked(true);
   }
