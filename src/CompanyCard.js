@@ -12,7 +12,8 @@ import { useState } from "react";
 *
 * CompanyCardList ==> {CompanyCard,...} ==> Navigate
 */
-
+//can use Link to make it presentatonal!
+//TODO: more helpful to pass everything down individually
 function CompanyCard({ companyData }) {
   // console.log("compd=", companyData);
   const [isClicked, setIsClicked] = useState(false);

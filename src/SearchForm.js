@@ -12,6 +12,9 @@ import { useState } from "react";
  *
  * {CompanyList, JobList} ==> SearchForm
  */
+
+//TODO: formData could just be searchTerms!
+//Blankspace with trim, in handle submit
 function SearchForm({ handleSearch, currSearchTerms }) {
   console.log("SearchForm ran");
   console.log("currSearchTerms", currSearchTerms);
@@ -26,7 +29,7 @@ function SearchForm({ handleSearch, currSearchTerms }) {
       [input.name]: input.value,
     }));
   }
-
+  //TODO: trim
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();

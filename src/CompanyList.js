@@ -16,6 +16,7 @@ import JoblyApi from "./api";
 *     - currFilter: string that is currently used to filter
 *
 * CompanyList => { CompanyCardList, SearchForm }
+TODO: reduce use effect by creating piece of state hasErrors
 */
 
 function CompanyList() {
@@ -26,16 +27,17 @@ function CompanyList() {
   console.log("CompanyList state", companies, isSearching, currFilter);
 
   //on first render, displays all companies
+  //TODO: rename OnLaunch
   useEffect(function fetchCompaniesOnLaunch() {
     async function getCompanies() {
       if (currFilter === "") {
-        setIsSearching(true);
+
         try {
+          setIsSearching(true);
           const companies = await JoblyApi.getAllCompanies();
           setCompanies(companies);
           setIsSearching(false);
         } catch (error) {
-          setIsSearching(false);
           return (
             <div className="CompanyList">
               <div className="CompanyList-error">
@@ -52,7 +54,7 @@ function CompanyList() {
           setCompanies(companies);
           setIsSearching(false);
         } catch (error) {
-
+          setIsSearching(false);
           return (
             <div className="CompanyList">
               <div className="CompanyList-error">
@@ -63,6 +65,7 @@ function CompanyList() {
         }
       }
     }
+    // setIsSearching(true); //TODO: setFalse once we move return out of useffect
     getCompanies();
   }, [currFilter]);
 

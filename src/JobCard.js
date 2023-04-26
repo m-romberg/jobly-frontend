@@ -8,6 +8,7 @@
 *   - none
 * JobCardList ==> {JobCard,...}
 */
+//TODO: destructure jobdata!
 
 function JobCard({ jobData, companyName }) {
   return (
