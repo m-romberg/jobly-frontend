@@ -5,8 +5,12 @@
 * RoutesList --> Homepage
 */
 
-function Homepage () {
- return <b> homepage!</b>
+function Homepage() {
+  return (
+    <div className="Homepage">
+      <b> Jobly </b>
+    </div>
+  );
 }
 
 export default Homepage;

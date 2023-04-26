@@ -14,7 +14,7 @@ import { useState } from "react";
 */
 
 function CompanyCard({ companyData }) {
-  console.log("compd=", companyData);
+  // console.log("compd=", companyData);
   const [isClicked, setIsClicked] = useState(false);
 
   if(isClicked === true) {

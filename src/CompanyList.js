@@ -30,14 +30,37 @@ function CompanyList() {
     async function getCompanies() {
       if (currFilter === "") {
         setIsSearching(true);
-        const companies = await JoblyApi.getAllCompanies();
-        setCompanies(companies);
-        setIsSearching(false);
+        try {
+          const companies = await JoblyApi.getAllCompanies();
+          setCompanies(companies);
+          setIsSearching(false);
+        } catch (error) {
+          setIsSearching(false);
+          return (
+            <div className="CompanyList">
+              <div className="CompanyList-error">
+                <b>Sorry, could not find any matching companies.</b>
+              </div>
+            </div>
+          );
+        }
       } else {
         setIsSearching(true);
-        const companies = await JoblyApi.getCompaniesLike(currFilter);
-        setCompanies(companies);
-        setIsSearching(false);
+        try {
+          const companies = await JoblyApi.getCompaniesLike(currFilter);
+          console.log("companies inside get /company/handle", companies);
+          setCompanies(companies);
+          setIsSearching(false);
+        } catch (error) {
+
+          return (
+            <div className="CompanyList">
+              <div className="CompanyList-error">
+                <b>Sorry, could not find any matching companies.</b>
+              </div>
+            </div>
+          );
+        }
       }
     }
     getCompanies();
@@ -54,17 +77,18 @@ function CompanyList() {
     setCurrFilter(searchTerms);
   }
 
-  //if currently looking for companies, show loading page
 
   //display valid companies and keep currfilter in searchbox
 
   return (
     <div className="CompanyList">
       <SearchForm
-          handleSearch={handleCompanySearch}
-          currSearchTerms={currFilter}
+        handleSearch={handleCompanySearch}
+        currSearchTerms={currFilter}
       />
-      <CompanyCardList companies={companies} />
+      {(companies.length > 0)
+        ? <CompanyCardList companies={companies} />
+        : "Sorry, no results were found!"}
     </div>
   );
 }

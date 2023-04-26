@@ -27,14 +27,36 @@ function JobList() {
     async function getJobs() {
       if (currFilter === "") {
         setIsSearching(true);
-        const jobs = await JoblyApi.getAllJobs();
-        setJobs(jobs);
-        setIsSearching(false);
+        try {
+          const jobs = await JoblyApi.getAllJobs();
+          setJobs(jobs);
+          setIsSearching(false);
+        } catch (error) {
+          setIsSearching(false);
+          return (
+            <div className="JobList">
+              <div className="JobList-error">
+                <b>Sorry, could not find any matching jobs.</b>
+              </div>
+            </div>
+          );
+        }
       } else {
-        setIsSearching(true);
-        const jobs = await JoblyApi.getJobsLike(currFilter);
-        setJobs(jobs);
-        setIsSearching(false);
+        try {
+          setIsSearching(true);
+          const jobs = await JoblyApi.getJobsLike(currFilter);
+          setJobs(jobs);
+          setIsSearching(false);
+        } catch (error) {
+          setIsSearching(false);
+          return (
+            <div className="JobList">
+              <div className="JobList-error">
+                <b>Sorry, could not find any matching jobs.</b>
+              </div>
+            </div>
+          );
+        }
       }
     }
     getJobs();
@@ -58,10 +80,12 @@ function JobList() {
   return (
     <div className="JobList">
       <SearchForm
-          handleSearch={handleJobSearch}
-          currSearchTerms={currFilter}
+        handleSearch={handleJobSearch}
+        currSearchTerms={currFilter}
       />
-      <JobCardList jobs={jobs} />
+      {jobs.length > 0
+        ? <JobCardList jobs={jobs} />
+        : "Sorry, no results were found!"}
     </div>
   );
 }
