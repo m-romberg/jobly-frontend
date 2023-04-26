@@ -5,20 +5,20 @@ import JobCard from "./JobCard";
  * takes in list of jobs and renders individual job cards
  *
  * props:
- *    - array of jobs:  [{title, company, salary, equity},...]
+ *    - array of jobs:  [{title, companyName, salary, equity},...]
  *
  * state:
  *    - none
  *
  * { JobList, CompanyDetails } => JobCardList => JobCard */
 
-function JobCardList() {
+function JobCardList({ jobs }) {
+  console.log("JobCardList ran");
+  console.log("jobs in JCL=", jobs);
+
   return (
     <div className="JobCardList">
-      JobCardList
-      <JobCard />
-      <JobCard />
-      <JobCard />
+      {jobs.map(j => <JobCard key={j.id} jobData={j} />)}
     </div>
   );
 }
