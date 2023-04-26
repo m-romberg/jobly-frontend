@@ -6,7 +6,7 @@
 */
 
 function Homepage () {
-
+ return <b> homepage!</b>
 }
 
 export default Homepage;

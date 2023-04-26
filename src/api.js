@@ -45,9 +45,14 @@ class JoblyApi {
     return res.company;
   }
 
+  static async getAllCompanies(){
+    let res = await this.request(`companies/`);
+    return res.companies;
+  }
+
   /** Get list of companies by name */
 
-  static async getCompanies(nameLike) {
+  static async getCompaniesLike(nameLike) {
     let res = await this.request(`companies/?nameLike=${nameLike}`);
     return res.companies;
 
@@ -68,3 +73,5 @@ class JoblyApi {
   }
 
 }
+
+export default JoblyApi;

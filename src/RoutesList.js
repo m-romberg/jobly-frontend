@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import CompanyList from "./CompanyList";
 import JobList from "./JobList";
 import CompanyDetail from "./CompanyDetail";
@@ -19,7 +19,7 @@ function RoutesList() {
       <Route path="/companies" element={<CompanyList />} />
       <Route path="/jobs" element={<JobList />} />
       <Route path="/companies/:handle" element={<CompanyDetail />} />
-      <Route path="*" element={<Homepage />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }

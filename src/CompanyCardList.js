@@ -4,14 +4,25 @@ import CompanyCard from "./CompanyCard";
  * CompanyCardList:
  *
  * takes in a list of companies and renders individual company cards
- * CompanyList => CompanyCardList => CompanyCard
  *
  * props:
- *   array of companies: [{name, logo, description},...]
+ *    array of companies: [{handle, name, logoUrl, description},...]
+ * state:
+ *    none
+ *
+ * CompanyList => CompanyCardList => { CompanyCard,... }
+ *
  */
 
-function CompanyCardList () {
+function CompanyCardList({ companies }) {
+  console.log("CompanyCardList ran");
+  console.log("companies", companies);
+  return (
+    <div className="CompanyCardList">
+      {companies.map(c => <CompanyCard key={c.handle} companyData={c} />)}
+    </div>
 
+  );
 }
 
 export default CompanyCardList;

@@ -7,7 +7,7 @@ import "./Navigation.css";
 *  NavLinks
 *       to: Jobly, Companies, Jobs
 */
-
+//TODO: research end! it wont always do what we want
 function Navigation() {
   return (
     <nav className="Navigation">

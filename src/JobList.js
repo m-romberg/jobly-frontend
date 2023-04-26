@@ -4,14 +4,21 @@ import SearchForm from "./SearchForm";
 /** JobList
 *
 * Handle searches and displays jobs
-* {JobList, SearchForm}
+*
 * state:
 *     jobs:  [{title, company, salary, equity},...]
-*     isSearching: t/f
+*     isSearching: t/f, querying to server for jobs list
+
+* JobList ==> { JobCardList,  SearchForm }
 */
 
 function JobList () {
-  return <h1>Jobs!</h1>
+  return (
+    <div className="JobList">
+      <SearchForm />
+      <JobCardList />
+    </div>
+  )
 }
 
 export default JobList;
