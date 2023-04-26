@@ -16,12 +16,11 @@ import CompanyCard from "./CompanyCard";
 
 function CompanyCardList({ companies }) {
   console.log("CompanyCardList ran");
-  console.log("companies", companies);
+  console.log("companies in CCL=", companies);
   return (
     <div className="CompanyCardList">
       {companies.map(c => <CompanyCard key={c.handle} companyData={c} />)}
     </div>
-
   );
 }
 

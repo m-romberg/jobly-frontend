@@ -22,20 +22,20 @@ function CompanyList() {
   console.log("CompanyList Ran");
   const [companies, setCompanies] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [currFilter, setCurrFilter] = useState({ searchTerms: "" });
+  const [currFilter, setCurrFilter] = useState("");
   console.log("CompanyList state", companies, isSearching, currFilter);
 
   //on first render, displays all companies
   useEffect(function fetchCompaniesOnLaunch() {
     async function getCompanies() {
-      if (currFilter.searchTerms === "") {
+      if (currFilter === "") {
         setIsSearching(true);
         const companies = await JoblyApi.getAllCompanies();
         setCompanies(companies);
         setIsSearching(false);
       } else {
         setIsSearching(true);
-        const companies = await JoblyApi.getCompaniesLike(currFilter.searchTerms);
+        const companies = await JoblyApi.getCompaniesLike(currFilter);
         setCompanies(companies);
         setIsSearching(false);
       }
@@ -50,7 +50,7 @@ function CompanyList() {
   /** Update with search term and trigger rerender of company list */
   function handleCompanySearch(searchTerms) {
     console.log("handleCompanySearch ran");
-    console.log("searchTerms", searchTerms);
+    console.log("searchTerms in handleCOmpanySearch fn", searchTerms);
     setCurrFilter(searchTerms);
   }
 
@@ -60,7 +60,10 @@ function CompanyList() {
 
   return (
     <div className="CompanyList">
-      <SearchForm handleSearch={handleCompanySearch} currSearchTerms={currFilter.searchTerms} />
+      <SearchForm
+          handleSearch={handleCompanySearch}
+          currSearchTerms={currFilter}
+      />
       <CompanyCardList companies={companies} />
     </div>
   );
