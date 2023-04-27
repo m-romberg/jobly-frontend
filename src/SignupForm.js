@@ -16,7 +16,7 @@ import Alert from "./Alert";
  * RoutesList --> SignupForm --> Alert
  */
 
-function SignupForm({ handleSignup }) {
+function SignupForm({ signup }) {
   console.log("SignupForm ran");
   const initialState = {
     username: "test2",
@@ -41,7 +41,7 @@ function SignupForm({ handleSignup }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSignup(formData);
+    signup(formData);
   }
   return (
     <div className="SignupForm">

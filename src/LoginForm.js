@@ -14,7 +14,7 @@ import Alert from "./Alert";
  * RoutesList --> LoginForm --> Alert
  */
 
-function LoginForm({ handleLogin }) {
+function LoginForm({ login }) {
   console.log("LoginForm ran");
   const initialState = {
     username: "test",
@@ -36,7 +36,7 @@ function LoginForm({ handleLogin }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleLogin(formData);
+    login(formData);
   }
   return (
     <div className="LoginForm">

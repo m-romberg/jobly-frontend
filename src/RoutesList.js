@@ -15,9 +15,10 @@ import SignupForm from "./SignupForm";
  * App --> RoutesList --> {Homepage, CompanyList, JobList, CompanyDetails}
  */
 
-function RoutesList() {
+function RoutesList({login, signup, logout}) {
   const username = false;
 
+  //TODO: add logout route?
   const loggedInRoutes =
     <div className="Routes-loggedIn">
       <Routes>
@@ -34,8 +35,8 @@ function RoutesList() {
     <div className="Routes-loggedOut">
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/login" element={<LoginForm login={login} />} />
+        <Route path="/signup" element={<SignupForm signup={signup} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>;

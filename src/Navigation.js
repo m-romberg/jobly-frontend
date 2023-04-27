@@ -12,7 +12,7 @@ function Navigation() {
   console.log("navigation ran");
 
   const username = false;
-
+  //TODO: need profile and logout navlink
   const loggedInNav =
     <nav className="Navigation-loggedIn">
       <NavLink to="/" className="Navigation-jobly" end>

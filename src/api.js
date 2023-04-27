@@ -19,6 +19,7 @@ class JoblyApi {
     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
   static async request(endpoint, data = {}, method = "get") {
+    console.log("endpoint????", endpoint);
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
@@ -80,7 +81,9 @@ class JoblyApi {
     */
   static async registerUser({ username, password, firstName, lastName, email }) {
     console.log("registerUser");
-    let res = await this.request(`register`, { username, password, firstName, lastName, email });
+    // let res = await this.request({endpoint:`auth/register`, data:{ username, password, firstName, lastName, email }, method: "post"});
+    let res = await this.request(`auth/register`, { username, password, firstName, lastName, email },"post");
+
     return res.token;
   }
 
@@ -92,7 +95,7 @@ class JoblyApi {
   */
   static async loginUser({ username, password }) {
     console.log("loginUser");
-    let res = await this.request(`token`, { username, password });
+    let res = await this.request(`auth/token`, { username, password });
     return res.token;
   }
 
@@ -101,9 +104,10 @@ class JoblyApi {
   * returns { username, firstName, lastName, isAdmin, jobs }
   * where jobs is { id, title, companyHandle, companyName, state }
   */
-  static async getUser({ username }) {
-    console.log("getUser");
-    let res = await this.request(`${username}`);
+  static async getUser( username ) {
+    console.log("inside getUser API");
+    console.log("username", username);
+    let res = await this.request(`users/${username}`);
     return res.user;
   }
 
