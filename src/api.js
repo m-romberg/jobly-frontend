@@ -52,11 +52,11 @@ class JoblyApi {
 
   /** Get list of companies by name */
 
+  //TODO: change to getCompanies everywhere
   static async getCompaniesLike(nameLike) {
-    let res = await this.request(`companies/?nameLike=${nameLike}`);
-    // let res = await this.request(`companies`, {nameLike});
+    // let res = await this.request(`companies/?nameLike=${nameLike}`);
+    let res = await this.request(`companies`, {nameLike});
     return res.companies;
-
   }
 
   /** Get details on a job by id. */
@@ -68,16 +68,19 @@ class JoblyApi {
 
   /** Get list of jobs by search term*/
 
-  static async getJobsLike(title) {
-    let res = await this.request(`jobs/?title=${title}`);
+  static async getJobs(title) {
+    // let res = await this.request(`jobs/?title=${title}`);
+    console.log("title in api getJobs=", title);
+    let res = await this.request(`jobs`, {title});
+    console.log("res in api on getJobs=", res);
     return res.jobs;
   }
 
-  /** Get all jobs */
-  static async getAllJobs(){
-    let res = await this.request(`jobs/`);
-    return res.jobs;
-  }
+  // /** Get all jobs */
+  // static async getAllJobs(){
+  //   let res = await this.request(`jobs/`);
+  //   return res.jobs;
+  // }
 
 }
 

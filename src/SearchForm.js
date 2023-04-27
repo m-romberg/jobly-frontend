@@ -33,7 +33,11 @@ function SearchForm({ handleSearch, currSearchTerms }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSearch(formData.searchTerms.trim());
+    if(formData.searchTerms === undefined){
+      handleSearch(formData.searchTerms);
+    } else {
+      handleSearch(formData.searchTerms.trim());
+    }
   }
   return (
     <form className="SearchForm" onSubmit={handleSubmit}>

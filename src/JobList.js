@@ -19,46 +19,25 @@ function JobList() {
   console.log("JobList Ran");
   const [jobs, setJobs] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [currFilter, setCurrFilter] = useState("");
+  const [currFilter, setCurrFilter] = useState(undefined);
+  const [hasErrors, setHasErrors] = useState(false);
   console.log("JobList state", jobs, isSearching, currFilter);
+  console.log("hasErrors in joblist=", hasErrors);
+  console.log("currFilter is=", currFilter);
 
   //on first render, displays all companies
   useEffect(function fetchJobsOnLaunch() {
     async function getJobs() {
-      if (currFilter === "") {
-        setIsSearching(true);
-        try {
-          const jobs = await JoblyApi.getAllJobs();
-          setJobs(jobs);
-          setIsSearching(false);
-        } catch (error) {
-          setIsSearching(false);
-          return (
-            <div className="JobList">
-              <div className="JobList-error">
-                <b>Sorry, could not find any matching jobs.</b>
-              </div>
-            </div>
-          );
-        }
-      } else {
-        try {
-          setIsSearching(true);
-          const jobs = await JoblyApi.getJobsLike(currFilter);
-          setJobs(jobs);
-          setIsSearching(false);
-        } catch (error) {
-          setIsSearching(false);
-          return (
-            <div className="JobList">
-              <div className="JobList-error">
-                <b>Sorry, could not find any matching jobs.</b>
-              </div>
-            </div>
-          );
-        }
+      try {
+        const jobs = await JoblyApi.getJobs(currFilter);
+        console.log("jobs after request=", jobs);
+        setJobs(jobs);
+      } catch (error) {
+        setHasErrors(true);
       }
+      setIsSearching(false);
     }
+    setIsSearching(true);
     getJobs();
   }, [currFilter]);
 
