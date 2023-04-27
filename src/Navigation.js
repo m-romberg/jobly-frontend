@@ -9,8 +9,12 @@ import "./Navigation.css";
 */
 
 function Navigation() {
-  return (
-    <nav className="Navigation">
+  console.log("navigation ran");
+
+  const username = false;
+
+  const loggedInNav =
+    <nav className="Navigation-loggedIn">
       <NavLink to="/" className="Navigation-jobly" end>
         Jobly
       </NavLink>
@@ -20,8 +24,22 @@ function Navigation() {
       <NavLink to="/companies" className="Navigation-companies">
         Companies
       </NavLink>
-    </nav>
-  );
+    </nav>;
+
+  const loggedOutNav =
+    <nav className="Navigation-loggedOut">
+      <NavLink to="/" className="Navigation-jobly" end>
+        Jobly
+      </NavLink>
+      <NavLink to="/login" className="Navigation-login">
+        Login
+      </NavLink>
+      <NavLink to="/signup" className="Navigation-signup">
+        Signup
+      </NavLink>
+    </nav>;
+
+  return username ? loggedInNav : loggedOutNav;
 }
 
 export default Navigation;

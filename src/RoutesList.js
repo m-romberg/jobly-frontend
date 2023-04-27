@@ -2,8 +2,11 @@ import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import CompanyList from "./CompanyList";
 import JobList from "./JobList";
+import ProfileForm from "./ProfileForm";
 import CompanyDetail from "./CompanyDetail";
 import Homepage from "./Homepage";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 /**
  * RoutesList
  *
@@ -13,7 +16,7 @@ import Homepage from "./Homepage";
  */
 
 function RoutesList() {
-  const username = undefined;
+  const username = false;
 
   const loggedInRoutes =
     <div className="Routes-loggedIn">
@@ -29,10 +32,12 @@ function RoutesList() {
 
   const loggedOutRoutes =
     <div className="Routes-loggedOut">
-      <Route path="/" element={<Homepage />} />
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/signup" element={<SignupForm />} />
-      <Route path="*" element={<Navigate to="/" />} />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </div>;
 
   return username ? loggedInRoutes : loggedOutRoutes;
