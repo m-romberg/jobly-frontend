@@ -31,37 +31,41 @@ function CompanyDetail() {
   };
   const [isSearching, setIsSearching] = useState(false);
   const [companyData, setCompanyData] = useState(initialState);
+  const [hasErrors, setHasErrors] = useState(false);
   console.log("Company Detail state=", isSearching, "companyData=", companyData);
   console.log("companyData.jobs =", companyData.jobs);
+  console.log("hasErrors=", hasErrors);
 
   const { handle } = useParams();
 
   useEffect(function fetchCompanyOnLaunch() {
     async function getCompany() {
       try {
-        setIsSearching(true);
         const company = await JoblyApi.getCompany(handle);
         console.log("company in fetchCompanyOnLaunch", company);
         setCompanyData(company);
-        setIsSearching(false);
       } catch (error) {
         console.log("INSIDE CATCH ERROR", error);
-        setIsSearching(false);
-        return (
-          <div className="CompanyDetail">
-            <div className="CompanyDetail-error">
-              <b>Sorry, could not find any matching results.</b>
-            </div>
-          </div>
-        );
+        setHasErrors(true);
       }
-
+      setIsSearching(false);
     }
+    setIsSearching(true);
     getCompany();
   }, []);
 
   if (isSearching === true) {
     return <h1>I am searching for companies...</h1>;
+  }
+
+  if (hasErrors === true) {
+    return (
+      <div className="CompanyDetail">
+        <div className="CompanyDetail-error">
+          <b>Sorry, could not find any matching results.</b>
+        </div>
+      </div>
+    );
   }
 
   return (

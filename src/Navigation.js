@@ -7,17 +7,17 @@ import "./Navigation.css";
 *  NavLinks
 *       to: Jobly, Companies, Jobs
 */
-//TODO: research end! it wont always do what we want
+
 function Navigation() {
   return (
     <nav className="Navigation">
       <NavLink to="/" end>
         Jobly
       </NavLink>
-      <NavLink to="/jobs" end>
+      <NavLink to="/jobs">
         Jobs
       </NavLink>
-      <NavLink to="/companies" end>
+      <NavLink to="/companies">
         Companies
       </NavLink>
     </nav>

@@ -29,11 +29,11 @@ function SearchForm({ handleSearch, currSearchTerms }) {
       [input.name]: input.value,
     }));
   }
-  //TODO: trim
+
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSearch(formData.searchTerms);
+    handleSearch(formData.searchTerms.trim());
   }
   return (
     <form className="SearchForm" onSubmit={handleSubmit}>
