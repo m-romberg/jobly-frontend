@@ -45,15 +45,15 @@ class JoblyApi {
     return res.company;
   }
 
-  static async getAllCompanies(){
-    let res = await this.request(`companies/`);
-    return res.companies;
-  }
+  // static async getAllCompanies(){
+  //   let res = await this.request(`companies/`);
+  //   return res.companies;
+  // }
 
   /** Get list of companies by name */
 
   //TODO: change to getCompanies everywhere
-  static async getCompaniesLike(nameLike) {
+  static async getCompanies(nameLike) {
     // let res = await this.request(`companies/?nameLike=${nameLike}`);
     let res = await this.request(`companies`, {nameLike});
     return res.companies;

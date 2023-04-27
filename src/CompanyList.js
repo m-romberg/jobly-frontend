@@ -23,49 +23,24 @@ function CompanyList() {
   console.log("CompanyList Ran");
   const [companies, setCompanies] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [currFilter, setCurrFilter] = useState("");
+  const [currFilter, setCurrFilter] = useState(undefined);
+  const [hasErrors, setHasErrors] = useState(false);
   console.log("CompanyList state", companies, isSearching, currFilter);
 
   //on first render, displays all companies
   //TODO: rename OnLaunch
   useEffect(function fetchCompaniesOnLaunch() {
     async function getCompanies() {
-      if (currFilter === "") {
-
         try {
-          setIsSearching(true);
-          const companies = await JoblyApi.getAllCompanies();
+          const companies = await JoblyApi.getCompanies(currFilter);
           setCompanies(companies);
-          setIsSearching(false);
         } catch (error) {
-          return (
-            <div className="CompanyList">
-              <div className="CompanyList-error">
-                <b>Sorry, could not find any matching companies.</b>
-              </div>
-            </div>
-          );
+          setHasErrors(true);
         }
-      } else {
-        setIsSearching(true);
-        try {
-          const companies = await JoblyApi.getCompaniesLike(currFilter);
-          console.log("companies inside get /company/handle", companies);
-          setCompanies(companies);
-          setIsSearching(false);
-        } catch (error) {
-          setIsSearching(false);
-          return (
-            <div className="CompanyList">
-              <div className="CompanyList-error">
-                <b>Sorry, could not find any matching companies.</b>
-              </div>
-            </div>
-          );
-        }
+      setIsSearching(false);
       }
-    }
-    // setIsSearching(true); //TODO: setFalse once we move return out of useffect
+    setIsSearching(true);
+    setHasErrors(false);
     getCompanies();
   }, [currFilter]);
 
@@ -89,7 +64,7 @@ function CompanyList() {
         handleSearch={handleCompanySearch}
         currSearchTerms={currFilter}
       />
-      {(companies.length > 0)
+      {((companies.length > 0) && !hasErrors)
         ? <CompanyCardList companies={companies} />
         : "Sorry, no results were found!"}
     </div>

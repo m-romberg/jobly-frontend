@@ -54,11 +54,13 @@ function CompanyDetail() {
     getCompany();
   }, []);
 
+  // setIsSearching(false);
+
   if (isSearching === true) {
     return <h1>I am searching for companies...</h1>;
   }
 
-  if (hasErrors === true) {
+  if(hasErrors === true) {
     return (
       <div className="CompanyDetail">
         <div className="CompanyDetail-error">

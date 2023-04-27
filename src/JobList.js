@@ -38,6 +38,7 @@ function JobList() {
       setIsSearching(false);
     }
     setIsSearching(true);
+    setHasErrors(false);
     getJobs();
   }, [currFilter]);
 
@@ -55,14 +56,13 @@ function JobList() {
   //if currently looking for companies, show loading page
 
   //display valid companies and keep currfilter in searchbox
-
   return (
     <div className="JobList">
       <SearchForm
         handleSearch={handleJobSearch}
         currSearchTerms={currFilter}
       />
-      {jobs.length > 0
+      {((jobs.length > 0) && !hasErrors)
         ? <JobCardList jobs={jobs} />
         : "Sorry, no results were found!"}
     </div>
