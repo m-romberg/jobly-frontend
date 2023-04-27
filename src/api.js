@@ -52,10 +52,9 @@ class JoblyApi {
 
   /** Get list of companies by name */
 
-  //TODO: change to getCompanies everywhere
   static async getCompanies(nameLike) {
     // let res = await this.request(`companies/?nameLike=${nameLike}`);
-    let res = await this.request(`companies`, {nameLike});
+    let res = await this.request(`companies`, { nameLike });
     return res.companies;
   }
 
@@ -71,16 +70,42 @@ class JoblyApi {
   static async getJobs(title) {
     // let res = await this.request(`jobs/?title=${title}`);
     console.log("title in api getJobs=", title);
-    let res = await this.request(`jobs`, {title});
+    let res = await this.request(`jobs`, { title });
     console.log("res in api on getJobs=", res);
     return res.jobs;
   }
+  /**
+     * registerUser: { username, password, firstName, lastName, email }
+     * register user and get jwt token back
+    */
+  static async registerUser({ username, password, firstName, lastName, email }) {
+    console.log("registerUser");
+    let res = await this.request(`register`, { username, password, firstName, lastName, email });
+    return res.token;
+  }
 
-  // /** Get all jobs */
-  // static async getAllJobs(){
-  //   let res = await this.request(`jobs/`);
-  //   return res.jobs;
-  // }
+  /**
+   * loginUser
+   * - input: { username, password }
+   *
+   * Login user and get jwt token back
+  */
+  static async loginUser({ username, password }) {
+    console.log("loginUser");
+    let res = await this.request(`token`, { username, password });
+    return res.token;
+  }
+
+  /** GetUser
+  * Get info on user by username
+  * returns { username, firstName, lastName, isAdmin, jobs }
+  * where jobs is { id, title, companyHandle, companyName, state }
+  */
+  static async getUser({ username }) {
+    console.log("getUser");
+    let res = await this.request(`${username}`);
+    return res.user;
+  }
 
 }
 
