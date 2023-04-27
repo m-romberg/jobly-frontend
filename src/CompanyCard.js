@@ -32,11 +32,14 @@ function CompanyCard({ companyData }) {
   return (
     <div className="CompanyCard">
         <button className="CompanyCard-button" onClick={activateIsClicked}>
-        <h4>{companyData.name}</h4>
+        <h4 className="CompanyCard-name">{companyData.name}</h4>
+        <p className="CompanyCard-description">{companyData.description}</p>
         {companyData.logoUrl
           &&
-          <img src={companyData.logoUrl} alt={companyData.name}></img>}
-        <p>{companyData.description}</p>
+          <img className="CompanyCard-logo"
+            src={companyData.logoUrl}
+            alt={companyData.name}
+          ></img>}
         </button>
     </div>
   );

@@ -1,0 +1,9 @@
+.Navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.Navigation-companies, .Navigation-jobs, .Navigation-jobly{
+    text-decoration: none;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./SearchForm.css";
 
 /** SearchForm
  *
@@ -41,7 +42,7 @@ function SearchForm({ handleSearch, currSearchTerms }) {
   }
   return (
     <form className="SearchForm" onSubmit={handleSubmit}>
-      <div className="mb-3">
+      <div className="SearchForm-form">
         <input
           id="search-terms"
           name="searchTerms"
@@ -51,7 +52,7 @@ function SearchForm({ handleSearch, currSearchTerms }) {
           value={formData.searchTerms}
         />
       </div>
-      <button>Search</button>
+      <button className="SearchForm-button">Search</button>
     </form>
   );
 }
