@@ -11,15 +11,102 @@ import Alert from "./Alert";
  *      - alertMessages ["some alert", ...]
  *
  * props:
- *      - handleSignUp fn passed down from App
+ *      - handleSignup fn passed down from App
  *
  * RoutesList --> SignupForm --> Alert
  */
 
-function SignupForm() {
+function SignupForm({handleSignup}) {
   console.log("SignupForm ran");
+  const initialState = {
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: ""
+  };
+
+  const [formData, setFormData] = useState(initialState);
+  console.log("formData", formData);
+
+  /** Update form input. */
+  function handleChange(evt) {
+    const input = evt.target;
+    setFormData(formData => ({
+      ...formData,
+      [input.name]: input.value,
+    }));
+  }
+
+  /** Call parent function and clear form. */
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    handleSignup(formData);
+  }
   return (
-    <div className="SignupForm">Signup form!</div>
+    <div className="SignupForm">
+      <form className="SignupForm-form" onSubmit={handleSubmit}>
+        <div className="SignupForm-username">
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            className="form-control"
+            placeholder="Enter a username"
+            onChange={handleChange}
+            value={formData.username}
+          />
+        </div>
+        <div className="SignupForm-username">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            className="form-control"
+            placeholder="Enter a password"
+            onChange={handleChange}
+            value={formData.password}
+          />
+        </div>
+        <div className="SignupForm-username">
+          <label htmlFor="firstName">First name</label>
+          <input
+            id="firstName"
+            name="firstName"
+            className="form-control"
+            placeholder="Enter your first name"
+            onChange={handleChange}
+            value={formData.firstName}
+          />
+        </div>
+        <div className="SignupForm-username">
+          <label htmlFor="lastName">Last name</label>
+          <input
+            id="lastName"
+            name="lastName"
+            className="form-control"
+            placeholder="Enter your last name"
+            onChange={handleChange}
+            value={formData.lastName}
+          />
+        </div>
+        <div className="SignupForm-username">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            className="form-control"
+            placeholder="Enter your email"
+            onChange={handleChange}
+            value={formData.email}
+          />
+        </div>
+
+        <button className="SignupForm-btn">Submit</button>
+      </form>
+    </div>
   );
 }
 
