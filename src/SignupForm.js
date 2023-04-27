@@ -16,7 +16,7 @@ import Alert from "./Alert";
  * RoutesList --> SignupForm --> Alert
  */
 
-function SignupForm({handleSignup}) {
+function SignupForm({ handleSignup }) {
   console.log("SignupForm ran");
   const initialState = {
     username: "",
@@ -57,7 +57,7 @@ function SignupForm({handleSignup}) {
             value={formData.username}
           />
         </div>
-        <div className="SignupForm-username">
+        <div className="SignupForm-password">
           <label htmlFor="password">Password</label>
           <input
             id="password"
@@ -69,7 +69,7 @@ function SignupForm({handleSignup}) {
             value={formData.password}
           />
         </div>
-        <div className="SignupForm-username">
+        <div className="SignupForm-firstName">
           <label htmlFor="firstName">First name</label>
           <input
             id="firstName"
@@ -80,7 +80,7 @@ function SignupForm({handleSignup}) {
             value={formData.firstName}
           />
         </div>
-        <div className="SignupForm-username">
+        <div className="SignupForm-firstName">
           <label htmlFor="lastName">Last name</label>
           <input
             id="lastName"
@@ -91,7 +91,7 @@ function SignupForm({handleSignup}) {
             value={formData.lastName}
           />
         </div>
-        <div className="SignupForm-username">
+        <div className="SignupForm-email">
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -103,7 +103,7 @@ function SignupForm({handleSignup}) {
             value={formData.email}
           />
         </div>
-
+        {/**alertMessages && alertMessages.map(m => <Alert message={m} />)*/}
         <button className="SignupForm-btn">Submit</button>
       </form>
     </div>
