@@ -1,5 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
+import "./CompanyCard.css";
+
 /**
 * CompanyCard:
 *     visual element for company detail and

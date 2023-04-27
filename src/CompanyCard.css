@@ -1,0 +1,25 @@
+.CompanyCard {
+  border: 1px solid black;
+  margin: 30px;
+  max-width: 80%;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2px black;
+  transition: 1s linear infinite;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.CompanyCard:hover {
+    transform: translate(-2px, -2px);
+}
+
+.CompanyCard-button {
+  display: flex;
+  position: relative;
+  align-items: stretch;
+  width: 100%;
+}
+
+.CompanyCard-button:hover {
+    background-color: bisque;
+}

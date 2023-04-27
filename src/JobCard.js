@@ -1,3 +1,5 @@
+import "./JobCard.css"
+
 /**
 * JobCard: simple visual element of job
 *
