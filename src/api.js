@@ -107,7 +107,7 @@ class JoblyApi {
   static async getUser( username ) {
     console.log("inside getUser API");
     console.log("username", username);
-    let res = await this.request(`users/${username}`);
+    let res = await this.request(`users/${username}`, );
     return res.user;
   }
 

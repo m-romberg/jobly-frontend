@@ -38,7 +38,7 @@ function App() {
       }
     }
     getUser();
-  }, [token ]);
+  }, [token]);
 
   async function login(loginData) {
     console.log("inside login");
