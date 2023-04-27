@@ -19,11 +19,11 @@ import Alert from "./Alert";
 function SignupForm({ handleSignup }) {
   console.log("SignupForm ran");
   const initialState = {
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: ""
+    username: "test2",
+    password: "password2",
+    firstName: "test2fn",
+    lastName: "test2ln",
+    email: "test2@email.com"
   };
 
   const [formData, setFormData] = useState(initialState);

@@ -17,8 +17,8 @@ import Alert from "./Alert";
 function LoginForm({ handleLogin }) {
   console.log("LoginForm ran");
   const initialState = {
-    username: "",
-    password: "",
+    username: "test",
+    password: "password",
   };
 
   const [formData, setFormData] = useState(initialState);
