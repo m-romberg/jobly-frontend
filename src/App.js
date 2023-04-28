@@ -78,7 +78,8 @@ function App() {
       JoblyApi.token = token;
     } catch (error) {
       console.log("error in login", error);
-      setErrorMessages(error);
+      return error;
+      // setErrorMessages(error);
     }
   }
 
