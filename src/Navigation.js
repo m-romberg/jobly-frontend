@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
+import { useContext } from "react";
+import userContext from "./userContext";
 
 /** Navigation:
 * Visual element with links to companies search, jobs search, and homepage
@@ -8,11 +10,13 @@ import "./Navigation.css";
 *       to: Jobly, Companies, Jobs
 */
 
-function Navigation() {
+function Navigation({logout}) {
   console.log("navigation ran");
 
-  const username = false;
+  const { username } = useContext(userContext);
+  console.log("username in navigation=", username);
   //TODO: need profile and logout navlink
+
   const loggedInNav =
     <nav className="Navigation-loggedIn">
       <NavLink to="/" className="Navigation-jobly" end>
@@ -23,6 +27,9 @@ function Navigation() {
       </NavLink>
       <NavLink to="/companies" className="Navigation-companies">
         Companies
+      </NavLink>
+      <NavLink to="/" className="Navigation-logout">
+        <button className="Navigation-logout-btn" onClick={logout}>Logout</button>
       </NavLink>
     </nav>;
 

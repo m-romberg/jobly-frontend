@@ -4,6 +4,7 @@ import Navigation from './Navigation';
 import RoutesList from './RoutesList';
 import JoblyApi from './api';
 import { useState, useEffect } from 'react';
+import userContext from "./userContext";
 
 /**
  *
@@ -17,7 +18,7 @@ import { useState, useEffect } from 'react';
 function App() {
   console.log("Inside App.");
 
-  const initialState = { username: "", firstName: "", lastName: "", isAdmin: "", jobs: "" };
+  const initialState = { username: "", firstName: "", lastName: "", isAdmin: "", applications: "" };
 
   const [token, setToken] = useState("");
   const [currUserData, setCurrUserData] = useState(initialState);
@@ -49,7 +50,7 @@ function App() {
       JoblyApi.token = token;
       setCurrUserData(curr => {
         curr['username'] = username;
-        return [...curr];
+        return {...curr};
       });
     } catch (error) {
       console.log("error in login", error);
@@ -77,14 +78,22 @@ function App() {
   function logout() {
     console.log("inside logout");
     setToken("");
+    setCurrUserData(initialState);
   }
 
   return (
     <div className="App">
+      <userContext.Provider value={
+        { username: currUserData.username,
+          firstName: currUserData.firstName,
+          applications: currUserData.applications
+        }
+      }>
       <BrowserRouter>
-        <Navigation />
+        <Navigation logout={logout}/>
         <RoutesList login={login} signup={signup} logout={logout} />
       </BrowserRouter>
+      </userContext.Provider>
     </div>
   );
 }
