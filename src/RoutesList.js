@@ -7,6 +7,10 @@ import CompanyDetail from "./CompanyDetail";
 import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+
+import { useContext } from "react";
+import userContext from "./userContext";
+
 /**
  * RoutesList
  *
@@ -16,9 +20,10 @@ import SignupForm from "./SignupForm";
  */
 
 function RoutesList({login, signup, logout}) {
-  const username = false;
 
-  //TODO: add logout route?
+  const { username } = useContext(userContext);
+  console.log("username in navigation=", username);
+
   const loggedInRoutes =
     <div className="Routes-loggedIn">
       <Routes>

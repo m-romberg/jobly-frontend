@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import Navigation from './Navigation';
 import RoutesList from './RoutesList';
 import JoblyApi from './api';
@@ -30,7 +30,7 @@ function App() {
     async function getUser() {
       console.log("inside getUser");
       try {
-        console.log("currUserData", currUserData );
+        console.log("currUserData", currUserData);
         const userResult = await JoblyApi.getUser(currUserData.username, token);
         console.log("userResult", userResult);
         setCurrUserData(userResult);
@@ -50,7 +50,7 @@ function App() {
       JoblyApi.token = token;
       setCurrUserData(curr => {
         curr['username'] = username;
-        return {...curr};
+        return { ...curr };
       });
     } catch (error) {
       console.log("error in login", error);
@@ -67,7 +67,7 @@ function App() {
       JoblyApi.token = token;
       setCurrUserData(curr => {
         curr['username'] = username;
-        return {...curr};
+        return { ...curr };
       });
     } catch (error) {
       console.log("error in signup", error);
@@ -84,15 +84,16 @@ function App() {
   return (
     <div className="App">
       <userContext.Provider value={
-        { username: currUserData.username,
+        {
+          username: currUserData.username,
           firstName: currUserData.firstName,
           applications: currUserData.applications
         }
       }>
-      <BrowserRouter>
-        <Navigation logout={logout}/>
-        <RoutesList login={login} signup={signup} logout={logout} />
-      </BrowserRouter>
+        <BrowserRouter>
+          <Navigation logout={logout} />
+          <RoutesList login={login} signup={signup} logout={logout} />
+        </BrowserRouter>
       </userContext.Provider>
     </div>
   );

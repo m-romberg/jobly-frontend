@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import {useContext} from "react";
+import userContext from "./userContext";
 
 /** Homepage:
 *     homepage visual element
@@ -9,7 +11,8 @@ import { Link } from "react-router-dom";
 
 function Homepage() {
   console.log("homepage ran");
-  const username = false;
+  const { username } = useContext(userContext);
+  console.log("username in navigation=", username);
 
   const loggedInHomepageContent =
     <div className="loggedInHomepageContent">
