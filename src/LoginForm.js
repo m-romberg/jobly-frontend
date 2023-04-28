@@ -16,10 +16,9 @@ import Alert from "./Alert";
 
 function LoginForm({ login, errorMessages }) {
   console.log("LoginForm ran");
-  //TODO: change these initial vals to ""
   const initialState = {
-    username: null,
-    password: null,
+    username: "",
+    password: "",
   };
 
   const [formData, setFormData] = useState(initialState);

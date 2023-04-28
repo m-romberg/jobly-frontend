@@ -18,13 +18,13 @@ import Alert from "./Alert";
 
 function SignupForm({ signup, errorMessages }) {
   console.log("SignupForm ran");
-  //TODO: change to empty strings instead of null
+
   const initialState = {
-    username: null,
-    password: null,
-    firstName: null,
-    lastName: null,
-    email: null
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: ""
   };
 
   const [formData, setFormData] = useState(initialState);
