@@ -38,7 +38,9 @@ function App() {
     isAdmin: null,
     applications: null
   };
-  const [token, setToken] = useState(null);
+  const tokenFromLocalStorageOrNull = localStorage.getItem("token") || null;
+
+  const [token, setToken] = useState(tokenFromLocalStorageOrNull);
   const [currUserData, setCurrUserData] = useState(initialState);
   const [errorMessages, setErrorMessages] = useState(null);
 
@@ -51,6 +53,7 @@ function App() {
     async function getUser() {
       console.log("inside getUser");
       if (token !== null) {
+        JoblyApi.token = token;
         const username = decodeToken(token).username;
         console.log("jwt decode username=", username);
         try {
@@ -75,7 +78,7 @@ function App() {
     try {
       const token = await JoblyApi.loginUser({ username, password });
       setToken(token);
-      JoblyApi.token = token;
+      localStorage.setItem("token", token);
     } catch (error) {
       console.log("error in login", error);
       return error;
@@ -94,6 +97,9 @@ function App() {
         );
       setToken(token);
       JoblyApi.token = token;
+      console.log("token above in signup", token);
+      localStorage.setItem("token", token);
+      console.log("token below in signup", token);
     } catch (error) {
       console.log("error in signup", error);
       setErrorMessages(error);
@@ -104,9 +110,10 @@ function App() {
   function logout() {
     console.log("inside logout");
     setToken(null);
+    localStorage.removeItem("token");
     setCurrUserData(initialState);
   }
-
+  console.log("token before return in app is", token);
   return (
     <div className="App">
       <userContext.Provider value={
