@@ -59,7 +59,8 @@ function RoutesList({login, signup, logout, errorMessages}) {
         <Route
           path="/login"
           element={<LoginForm login={login}
-          errorMessages={errorMessages}/>}
+          errorMessages={errorMessages}/>
+        }
         />
         <Route
           path="/signup"
