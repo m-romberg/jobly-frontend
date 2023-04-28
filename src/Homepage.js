@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {useContext} from "react";
 import userContext from "./userContext";
+import "./Homepage.css"
 
 /** Homepage:
 *     homepage visual element
@@ -15,12 +16,12 @@ function Homepage() {
   console.log("username in navigation=", username);
 
   const loggedInHomepageContent =
-    <div className="loggedInHomepageContent">
+    <div className="Homepage-loggedInHomepageContent">
       <p>Welcome back, {username}!</p>
     </div>;
   //TODO: updsate classnames w component names first
   const loggedOutHomepageContent =
-    <div className="loggedOutHomepageContent">
+    <div className="Homepage-loggedOutHomepageContent">
       <Link to="/login">
         <button className="Homepage-login-btn">Log in</button>
       </Link>

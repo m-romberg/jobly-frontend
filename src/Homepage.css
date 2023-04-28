@@ -1,0 +1,18 @@
+.Homepage-signup-btn, .Homepage-login-btn {
+    background-color: #008CBA;;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    margin: 5px;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    transition: .5s linear ease-in-out;
+}
+
+.Homepage-signup-btn:hover, .Homepage-login-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5.5px 2.5px rgb(80, 76, 76);
+}
