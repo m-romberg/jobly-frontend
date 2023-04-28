@@ -18,7 +18,7 @@ function Homepage() {
     <div className="loggedInHomepageContent">
       <p>Welcome back, {username}!</p>
     </div>;
-
+  //TODO: updsate classnames w component names first
   const loggedOutHomepageContent =
     <div className="loggedOutHomepageContent">
       <Link to="/login">

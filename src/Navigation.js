@@ -5,6 +5,7 @@ import userContext from "./userContext";
 
 /** Navigation:
 * Visual element with links to companies search, jobs search, and homepage
+*  props: logout fn
 *
 *  NavLinks
 *       to: Jobly, Companies, Jobs
@@ -16,8 +17,9 @@ function Navigation({logout}) {
   const { username } = useContext(userContext);
   console.log("username in navigation=", username);
 
+  //TODO: navigate logout then set navigate to - race condition
   const loggedInNav =
-    <nav className="Navigation-loggedIn">
+    <nav className="Navigation Navigation-loggedIn">
       <NavLink to="/" className="Navigation-jobly" end>
         Jobly
       </NavLink>
@@ -33,7 +35,7 @@ function Navigation({logout}) {
     </nav>;
 
   const loggedOutNav =
-    <nav className="Navigation-loggedOut">
+    <nav className="Navigation Navigation-loggedOut">
       <NavLink to="/" className="Navigation-jobly" end>
         Jobly
       </NavLink>

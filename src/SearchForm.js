@@ -14,8 +14,6 @@ import "./SearchForm.css";
  * {CompanyList, JobList} ==> SearchForm
  */
 
-//TODO: formData could just be searchTerms!
-//Blankspace with trim, in handle submit
 function SearchForm({ handleSearch, currSearchTerms }) {
   console.log("SearchForm ran");
   console.log("currSearchTerms", currSearchTerms);

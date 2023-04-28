@@ -8,16 +8,17 @@ import Alert from "./Alert";
  *
  * state:
  *      - formData
- *      - errorMessages ["some alert", ...]
  *
  * props:
  *      - handleSignup fn passed down from App
+ *      - errorMessages ["some alert", ...]
  *
  * RoutesList --> SignupForm --> Alert
  */
 
 function SignupForm({ signup, errorMessages }) {
   console.log("SignupForm ran");
+  //TODO: change to empty strings instead of null
   const initialState = {
     username: null,
     password: null,

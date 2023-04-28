@@ -37,14 +37,14 @@ function App() {
     isAdmin: null,
     applications: null
   };
-
+  //TODO: set token to null --update docstring (str or null)
   const [token, setToken] = useState("");
   const [currUserData, setCurrUserData] = useState(initialState);
   const [errorMessages, setErrorMessages] = useState(null);
 
   console.log("App state=", "token=", token, "currUserData", currUserData);
   console.log("error msgs in app", errorMessages);
-
+  //TODO: grab username from payload of token on line 53 instead
   /** Gets user data on initial render and token change */
   useEffect(function fetchUserOnTokenChange() {
     console.log("inside fetchUserOnTokenChange");
@@ -66,6 +66,8 @@ function App() {
   }, [token]);
 
   /** Logs in a user or sets error messages */
+  //TODO: 77-80 will change after token change
+  //TODO: update error message handling to empty them out somewhere
   async function login(loginData) {
     console.log("inside login");
     const { username, password } = loginData;
@@ -84,6 +86,7 @@ function App() {
   }
 
   /** Signs up a user or sets error messages */
+  //TODO: dont need 99-101 after token change above
   async function signup(signupData) {
     console.log("inside signup");
     const { username, password, firstName, lastName, email } = signupData;
@@ -105,6 +108,7 @@ function App() {
   }
 
   /** Logs out a user and sets token to empty string */
+  //TODO: change token reset to null here as well
   function logout() {
     console.log("inside logout");
     setToken("");
