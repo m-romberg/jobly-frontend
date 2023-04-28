@@ -1,9 +1,23 @@
-.Navigation {
+.Navigation-loggedIn, .Navigation-loggedOut {
     display: flex;
     justify-content: space-between;
     margin: 15px;
 }
 
-.Navigation-companies, .Navigation-jobs, .Navigation-jobly{
-    text-decoration: none;
+a {
+    text-decoration:none;
+    color: rgb(99, 38, 99);
+    font-size: 19px;
 }
+
+a:hover {
+    color: red;
+}
+
+/* .Navigation-companies,
+.Navigation-jobs,
+.Navigation-jobly,
+.Navigation-login,
+.Navigation-signup{
+    text-decoration: none;
+} */
