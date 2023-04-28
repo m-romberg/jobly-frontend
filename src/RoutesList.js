@@ -15,11 +15,23 @@ import userContext from "./userContext";
  * RoutesList
  *
  * Holds routes for JoblyApp
+ * props:
+ *    login fn
+ *    signup fn
+ *    logout fn
+ *    errorMessages - ["Invalid username/password", ...]
  *
- * App --> RoutesList --> {Homepage, CompanyList, JobList, CompanyDetails}
+ * context:
+ *    username from context used to determine if logged in
+ *
+ * App -->
+ *    RoutesList(if logged in) -->
+ *        {Homepage, CompanyList, JobList, CompanyDetails, ProfileForm}
+ * App -->
+ *    RoutesList(if logged out) --> {Homepage, SignupForm, LoginForm}
  */
 
-function RoutesList({login, signup, logout}) {
+function RoutesList({login, signup, logout, errorMessages}) {
 
   const { username } = useContext(userContext);
   console.log("username in navigation=", username);
@@ -40,8 +52,14 @@ function RoutesList({login, signup, logout}) {
     <div className="Routes-loggedOut">
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<LoginForm login={login} />} />
-        <Route path="/signup" element={<SignupForm signup={signup} />} />
+        <Route
+          path="/login"
+          element={<LoginForm login={login}  errorMessages={errorMessages}/>}
+        />
+        <Route
+          path="/signup"
+          element={<SignupForm signup={signup}  errorMessages={errorMessages}/>}
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>;

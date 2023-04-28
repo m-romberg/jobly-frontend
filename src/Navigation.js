@@ -15,7 +15,6 @@ function Navigation({logout}) {
 
   const { username } = useContext(userContext);
   console.log("username in navigation=", username);
-  //TODO: need profile and logout navlink
 
   const loggedInNav =
     <nav className="Navigation-loggedIn">
@@ -28,8 +27,8 @@ function Navigation({logout}) {
       <NavLink to="/companies" className="Navigation-companies">
         Companies
       </NavLink>
-      <NavLink to="/" className="Navigation-logout">
-        <button className="Navigation-logout-btn" onClick={logout}>Logout</button>
+      <NavLink to="/" className="Navigation-logout" onClick={logout}>
+        Log out {username}
       </NavLink>
     </nav>;
 

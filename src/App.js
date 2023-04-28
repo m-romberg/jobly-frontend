@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Navigation from './Navigation';
 import RoutesList from './RoutesList';
 import JoblyApi from './api';
@@ -9,38 +9,63 @@ import userContext from "./userContext";
 /**
  *
  * App:
- * Controlls Jobly website
- * Handles login and sign up validation
+ *  Controls Jobly website
+ *  Handles login and sign up validation
  *
+ * state:
+ *    token - sets user's JWT
+ *    currUserData - {username,
+ *                    firstName,
+ *                    lastName,
+ *                    email,
+ *                    isAdmin (t/f),
+ *                    applications ([])
+ *                  }
+ *     errorMessages - ["Invalid username/password", ...]
  *
- *  App ==> { Navigation, RoutesList }
+ * props: none
+ *
+ * App ==> { Navigation, RoutesList }
  */
 function App() {
   console.log("Inside App.");
 
-  const initialState = { username: "", firstName: "", lastName: "", isAdmin: "", applications: "" };
+  const initialState = {
+    username: null,
+    firstName: null,
+    lastName: null,
+    isAdmin: null,
+    applications: null
+  };
 
   const [token, setToken] = useState("");
   const [currUserData, setCurrUserData] = useState(initialState);
+  const [errorMessages, setErrorMessages] = useState(null);
 
   console.log("App state=", "token=", token, "currUserData", currUserData);
+  console.log("error msgs in app", errorMessages);
 
+  /** Gets user data on initial render and token change */
   useEffect(function fetchUserOnTokenChange() {
     console.log("inside fetchUserOnTokenChange");
     async function getUser() {
       console.log("inside getUser");
-      try {
-        console.log("currUserData", currUserData);
-        const userResult = await JoblyApi.getUser(currUserData.username, token);
-        console.log("userResult", userResult);
-        setCurrUserData(userResult);
-      } catch (error) {
-        console.log("error in getUser");
+      if (currUserData.username !== null) {
+        try {
+          console.log("currUserData", currUserData);
+          const userResult = await JoblyApi.getUser(currUserData.username, token);
+          console.log("userResult", userResult);
+          setCurrUserData(userResult);
+        } catch (error) {
+          console.log("error in getUser");
+          setErrorMessages(error);
+        }
       }
     }
     getUser();
   }, [token]);
 
+  /** Logs in a user or sets error messages */
   async function login(loginData) {
     console.log("inside login");
     const { username, password } = loginData;
@@ -54,15 +79,19 @@ function App() {
       });
     } catch (error) {
       console.log("error in login", error);
-      //err needs to go to form to display message
+      setErrorMessages(error);
     }
   }
 
+  /** Signs up a user or sets error messages */
   async function signup(signupData) {
     console.log("inside signup");
     const { username, password, firstName, lastName, email } = signupData;
     try {
-      const token = await JoblyApi.registerUser({ username, password, firstName, lastName, email });
+      const token =
+        await JoblyApi.registerUser(
+          { username, password, firstName, lastName, email }
+        );
       setToken(token);
       JoblyApi.token = token;
       setCurrUserData(curr => {
@@ -71,10 +100,11 @@ function App() {
       });
     } catch (error) {
       console.log("error in signup", error);
-      //err needs to go to form to display message
+      setErrorMessages(error);
     }
   }
 
+  /** Logs out a user and sets token to empty string */
   function logout() {
     console.log("inside logout");
     setToken("");
@@ -92,7 +122,12 @@ function App() {
       }>
         <BrowserRouter>
           <Navigation logout={logout} />
-          <RoutesList login={login} signup={signup} logout={logout} />
+          <RoutesList
+            login={login}
+            signup={signup}
+            logout={logout}
+            errorMessages={errorMessages}
+          />
         </BrowserRouter>
       </userContext.Provider>
     </div>

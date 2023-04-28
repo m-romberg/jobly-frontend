@@ -4,11 +4,11 @@ import Alert from "./Alert";
 
 /** SignupForm
  *
- * Show SignUp Form
+ * Shows SignUp Form
  *
  * state:
  *      - formData
- *      - alertMessages ["some alert", ...]
+ *      - errorMessages ["some alert", ...]
  *
  * props:
  *      - handleSignup fn passed down from App
@@ -16,14 +16,14 @@ import Alert from "./Alert";
  * RoutesList --> SignupForm --> Alert
  */
 
-function SignupForm({ signup }) {
+function SignupForm({ signup, errorMessages }) {
   console.log("SignupForm ran");
   const initialState = {
-    username: "test2",
-    password: "password2",
-    firstName: "test2fn",
-    lastName: "test2ln",
-    email: "test2@email.com"
+    username: null,
+    password: null,
+    firstName: null,
+    lastName: null,
+    email: null
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -103,7 +103,7 @@ function SignupForm({ signup }) {
             value={formData.email}
           />
         </div>
-        {/**alertMessages && alertMessages.map(m => <Alert message={m} />)*/}
+        {errorMessages && <Alert messages={errorMessages} />}
         <button className="SignupForm-btn">Submit</button>
       </form>
     </div>

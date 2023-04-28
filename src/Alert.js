@@ -2,14 +2,18 @@
  *
  * displays an alert
  * props:
- *    - alertMessages
+ *    - messages ["Invalid username/password", ...]
  *
+ *  { SignupForm, LoginForm, Profile } --> Alert
  */
 
-function Alert() {
+function Alert({ messages }) {
   console.log("alert ran");
+  console.log("messages=", messages);
   return (
-    <div className="Alert">ALERT!</div>
+    <div classNames="Alert">
+      {messages.map((m, idx) => (<div key={idx} className="Alert-msg">{m}</div>))}
+    </div>
   );
 }
 

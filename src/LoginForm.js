@@ -9,16 +9,16 @@ import Alert from "./Alert";
  * state: formData
  * props:
  *    - handleLogin fn passed down from App
- *    - alertMessages ["some alert", ...]
+ *    - errorMessages ["some alert", ...]
  *
  * RoutesList --> LoginForm --> Alert
  */
 
-function LoginForm({ login }) {
+function LoginForm({ login, errorMessages }) {
   console.log("LoginForm ran");
   const initialState = {
-    username: "test",
-    password: "password",
+    username: null,
+    password: null,
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -64,7 +64,7 @@ function LoginForm({ login }) {
             value={formData.password}
           />
         </div>
-        {/**alertMessages && alertMessages.map(m => <Alert message={m} />)*/}
+        {errorMessages && <Alert messages={errorMessages} />}
         <button className="LoginForm-btn">Submit</button>
       </form>
     </div>
