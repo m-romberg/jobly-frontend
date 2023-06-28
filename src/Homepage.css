@@ -12,8 +12,8 @@
     border: none;
     border-radius: 6px;
     color: white;
-    margin-top: 10%;
-    padding: 4% 14%;
+    margin: 7%;
+    padding: 2% 7%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -28,12 +28,12 @@
 
   .Homepage-loggedOutHomepageContent{
     margin-top: 2%;
-    padding-bottom: 22%;
+    padding-bottom: 12%;
   }
 
   .Homepage-title {
     display: block;
-    padding-top: 10%;
+    margin-top: 10%;
     font-size: 64px;
     color: white;
   }
