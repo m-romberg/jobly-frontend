@@ -1,16 +1,43 @@
 .LoginForm-btn {
-  background-color: #008cba;
+  background-color: white;
   border: none;
   border-radius: 6px;
-  color: white;
+  color: #18215A;
   padding: 10px 32px;
   margin: 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 10px;
+  font-size: 100%;
 }
 .LoginForm-btn:hover {
   transform: translate(-2px, -2px);
   box-shadow: 5px 5.5px 2.5px rgb(80, 76, 76);
+}
+
+.LoginForm {
+  margin-top: 15%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5%;
+  width: 35%;
+  background: #18215A;
+  border-width: 2px;
+  border-radius: 10px;
+}
+
+.LoginForm label {
+  display: block-inline;
+  color: white;
+  text-align: right;
+}
+
+.LoginForm input {
+    margin-left: 15px;
+    margin-bottom: 10px;
+    padding:8px;
+    width:75%;
+    border-radius: 10px;
+    border-style: none;
 }
