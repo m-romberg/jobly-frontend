@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import {useContext} from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import { useContext } from "react";
 import userContext from "./userContext";
-import "./Homepage.css"
+import "./Homepage.css";
 
 /** Homepage:
 *     homepage visual element
@@ -16,28 +17,44 @@ function Homepage() {
   console.log("username in navigation=", username);
 
   const loggedInHomepageContent =
-    <div className="Homepage-loggedInHomepageContent">
-      <p>Welcome back, {username}!</p>
-    </div>;
+    <Container className="Homepage-loggedInHomepageContent">
+      <Row><Col>
+        <p>Welcome back, {username}!</p>
+      </Col></Row>
+    </Container>;
   //TODO: updsate classnames w component names first
   const loggedOutHomepageContent =
-    <div className="Homepage-loggedOutHomepageContent">
-      <Link to="/login">
-        <button className="Homepage-login-btn">Log in</button>
-      </Link>
-      <Link to="/signup">
-        <button className="Homepage-signup-btn">Sign up</button>
-      </Link>
-    </div>;
+    <Container className="Homepage-loggedOutHomepageContent">
+      <Row>
+        <Col>
+          <Link to="/login">
+            <button className="Homepage-login-btn">Log in</button>
+          </Link>
+        </Col>
+        <Col>
+          <Link to="/signup">
+            <button className="Homepage-signup-btn">Sign up</button>
+          </Link>
+        </Col>
+      </Row>
+    </Container>;
 
   return (
-    <div className="Homepage">
-      <h1 className="Homepage-title">Jobly</h1>
-      <h3 className="Homepage-description">
-        All the jobs in one, convenient place.
-      </h3>
+    <Container className="Homepage">
+      <Row>
+        <Col>
+          <h1 className="Homepage-title">Jobly</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <h3 className="Homepage-description">
+            All the jobs in one, convenient place.
+          </h3>
+        </Col>
+      </Row>
       {username ? loggedInHomepageContent : loggedOutHomepageContent}
-    </div>
+    </Container>
 
   );
 }

@@ -1,3 +1,4 @@
+
 .Homepage-signup-btn, .Homepage-login-btn {
     background-color: #008CBA;;
     border: none;
@@ -16,3 +17,11 @@
     transform: translate(-2px, -2px);
     box-shadow: 5px 5.5px 2.5px rgb(80, 76, 76);
 }
+
+.Homepage {
+    background-image: url(http://localhost:3000/jobs.gif);
+    background-repeat: no-repeat;
+    background-size: "cover";
+    max-width: 100%;
+    min-height: 100%;
+  }
