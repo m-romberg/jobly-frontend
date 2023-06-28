@@ -1,15 +1,22 @@
+.Homepage {
+    margin-top: -3%;
+    background-image: url(http://localhost:3000/jobs.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+  }
 
 .Homepage-signup-btn, .Homepage-login-btn {
     background-color: #008CBA;;
     border: none;
     border-radius: 6px;
     color: white;
-    margin: 5px;
-    padding: 10px 32px;
+    margin-top: 10%;
+    padding: 4% 14%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 10px;
+    font-size: 100%;
     transition: .5s linear ease-in-out;
 }
 
@@ -18,10 +25,27 @@
     box-shadow: 5px 5.5px 2.5px rgb(80, 76, 76);
 }
 
-.Homepage {
-    background-image: url(http://localhost:3000/jobs.gif);
-    background-repeat: no-repeat;
-    background-size: "cover";
-    max-width: 100%;
-    min-height: 100%;
+  .Homepage-loggedOutHomepageContent{
+    margin-top: 2%;
+    padding-bottom: 22%;
+  }
+
+  .Homepage-title {
+    display: block;
+    padding-top: 10%;
+    font-size: 64px;
+    color: white;
+  }
+
+  .Homepage-description {
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 1%;
+    font-size: 36px;
+    color: white;
+}
+
+  .Homepage p {
+    color: white;
+    padding-bottom: 22%;
   }
